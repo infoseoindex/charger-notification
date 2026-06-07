@@ -85,6 +85,11 @@ BelCharge endpoints discovered from the public website:
 - Server has Git, Node.js, and npm available.
 - Server currently cannot access GitHub repo until the deploy key is added to GitHub.
 - Server deploy key and SSH alias `github.com-charger-notification` were created.
+- Repository was cloned on the server into `/root/charger-notification`.
+- Initial MVP was committed on the server and pushed to GitHub:
+  - Commit: `f8bde58`
+  - Branch: `main`
+  - Message: `Initial BelCharge notification bot MVP`
 
 ## Next Steps
 

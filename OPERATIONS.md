@@ -38,9 +38,11 @@ First MVP:
 - Runtime: Node.js without external dependencies.
 - Data source: BelCharge public web API.
 - Notifications: Telegram if configured, otherwise console logs.
-- Events: selected charging station gets an available connector.
-- Filters: station ids, connector types, minimum power.
+- Main flow: user sends a station id, bot returns connectors and their statuses, user selects interesting connectors with checkbox buttons, bot watches those exact connectors.
+- Events: selected connector changes from not available to `Available`.
+- Legacy filters: station ids, connector types, minimum power.
 - Notification style: like CheapToursAlertsBot, with useful alerts, no duplicate spam, manual checks, and optional no-availability reports.
+- Telegram UX target: separate bot as the main control surface, similar to CheapToursAlertsBot.
 
 BelCharge endpoints discovered from the public website:
 
@@ -60,10 +62,13 @@ BelCharge endpoints discovered from the public website:
 ## Notification Rules
 
 - Main alert is sent when a watched station changes from no matching available connectors to at least one matching available connector.
+- Preferred alert is sent when a selected connector changes from not available to `Available`.
 - If a station is already available on first check, the bot does not alert by default.
 - Set `NOTIFY_WHEN_ALREADY_AVAILABLE=true` to alert on first available check.
 - Set `NO_AVAILABILITY_REPORT_EVERY_MINUTES` to a positive number to receive periodic "still no chargers" reports.
 - Use `/check` to request the current status manually.
+- Use `/menu` and `/settings` to work with the bot from Telegram.
+- Use `/station stationId` or send a station id as plain text to choose connectors.
 
 ## Current Status
 
@@ -78,6 +83,8 @@ BelCharge endpoints discovered from the public website:
 - Local `.env` was created and is excluded from Git.
 - Notification-bot mode was updated to mirror CheapToursAlertsBot behavior: watch criteria, alert on useful transition, manual check, optional no-availability report.
 - `src/index.js` and `src/search.js` passed syntax parsing through Node REPL on 2026-06-08.
+- Telegram control-surface mode added: `/menu`, `/settings`, `/status`, `/pause`, `/resume`, inline setting buttons, reply keyboard, and callback query handling.
+- Connector selection flow added: station id input, connector status display, checkbox selection, and per-connector watch list.
 - Runtime verification is pending because this Codex sandbox could not execute `node.exe` and `npm` is not installed in the sandbox path.
 - Git initialization, commit, and push are pending because `git`, `gh`, and GitHub Desktop are not available in the sandbox path or standard install paths.
 - `winget install Git.Git` downloaded Git 2.54.0 but could not complete because the installer requested administrator approval and the installation was cancelled.

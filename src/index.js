@@ -29,6 +29,7 @@ async function main() {
   }
 
   mergeEnvWatchList();
+  mergeEnvChatId();
   log(`service started. Watching ${state.watchLocationIds.length} station(s).`);
 
   await Promise.all([
@@ -446,6 +447,20 @@ function mergeEnvWatchList() {
       state.watchLocationIds.push(id);
     }
   }
+
+  saveState();
+}
+
+function mergeEnvChatId() {
+  if (!config.TELEGRAM_CHAT_ID) {
+    return;
+  }
+
+  state.chatIds[String(config.TELEGRAM_CHAT_ID)] = {
+    id: config.TELEGRAM_CHAT_ID,
+    type: "configured",
+    title: "Configured Telegram chat"
+  };
 
   saveState();
 }

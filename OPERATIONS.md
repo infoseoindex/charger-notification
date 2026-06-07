@@ -72,6 +72,8 @@ BelCharge endpoints discovered from the public website:
 - Telegram bot token was verified with `getMe` on 2026-06-08.
 - Telegram `getUpdates` returned no chats yet; user must send `/start` to the bot.
 - Telegram bot command menu was configured with `setMyCommands` on 2026-06-08.
+- Telegram chat id was discovered from `getUpdates`: `38908680`.
+- Test Telegram message was sent successfully from the server to chat id `38908680`.
 - MVP now supports Telegram commands: `/start`, `/search`, `/watch`, `/unwatch`, `/list`, `/check`.
 - Local `.env` was created and is excluded from Git.
 - Notification-bot mode was updated to mirror CheapToursAlertsBot behavior: watch criteria, alert on useful transition, manual check, optional no-availability report.

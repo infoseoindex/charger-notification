@@ -33,6 +33,7 @@ Edit `.env`:
 
 ```text
 TELEGRAM_BOT_TOKEN=123456:your-token
+TELEGRAM_CHAT_ID=123456789
 WATCH_LOCATION_IDS=a04846f4-06a0-4651-a58d-669cd9dc72b9
 CONNECTOR_TYPES=CCS2,GBT
 MIN_POWER_KW=50
@@ -60,6 +61,8 @@ Then open the Telegram bot and send:
 /list
 /check
 ```
+
+The bot also remembers chats that send `/start`, so `TELEGRAM_CHAT_ID` is useful but not the only way to register a chat.
 
 ## Scripts
 

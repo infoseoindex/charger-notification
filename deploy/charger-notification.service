@@ -1,0 +1,15 @@
+[Unit]
+Description=ChargerNotification BelCharge Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/charger-notification
+Environment=NODE_ENV=production
+ExecStart=/usr/local/bin/node /root/charger-notification/src/index.js
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

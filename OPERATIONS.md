@@ -59,6 +59,16 @@ BelCharge endpoints discovered from the public website:
 6. Add a station with `/watch locationId`.
 7. Wait until a watched station changes from unavailable/busy to available.
 
+## Server Service
+
+- Service name: `charger-notification`
+- Unit path: `/etc/systemd/system/charger-notification.service`
+- Repo copy: `deploy/charger-notification.service`
+- Start/restart: `systemctl restart charger-notification`
+- Status: `systemctl status charger-notification --no-pager -l`
+- Logs: `journalctl -u charger-notification -n 100 --no-pager`
+- Current service status on 2026-06-08: active and enabled.
+
 ## Notification Rules
 
 - Main alert is sent when a watched station changes from no matching available connectors to at least one matching available connector.
@@ -85,6 +95,10 @@ BelCharge endpoints discovered from the public website:
 - `src/index.js` and `src/search.js` passed syntax parsing through Node REPL on 2026-06-08.
 - Telegram control-surface mode added: `/menu`, `/settings`, `/status`, `/pause`, `/resume`, inline setting buttons, reply keyboard, and callback query handling.
 - Connector selection flow added: station id input, connector status display, checkbox selection, and per-connector watch list.
+- Systemd service was created and started on the server:
+  - Service: `charger-notification`
+  - Status: active
+  - Enabled on boot: yes
 - Runtime verification is pending because this Codex sandbox could not execute `node.exe` and `npm` is not installed in the sandbox path.
 - Git initialization, commit, and push are pending because `git`, `gh`, and GitHub Desktop are not available in the sandbox path or standard install paths.
 - `winget install Git.Git` downloaded Git 2.54.0 but could not complete because the installer requested administrator approval and the installation was cancelled.
